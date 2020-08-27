@@ -1,6 +1,8 @@
 ﻿
-CREATE   Proc [Test].[usp_Get_Number] (@MinValue int = 1, @MaxValue int = 9, @MaxIteration int = 100, @ResultOnly bit = 0, @Result tinyint = 0 out)
+
+Create   Proc [Test].[usp_Get_PostArea_Fountain] (@MaxIteration int = 100, @ResultOnly bit = 0, @Result tinyint = 0 out)
 as
+
 
 Set nocount on
 ;
@@ -10,23 +12,25 @@ Drop table if exists #test
 
 Create Table #test
 (
-Number int
+PostArea varchar(50),
+PostAreaName varchar(50)
 )
 ;
 
 
-Declare @Number int,
+Declare @PostArea varchar(50),
+		@PostAreaName varchar(50),
 		@Iteration int = 1,
 		@ValuesGenerated int = 0
 		
 
 while @Iteration <= @MaxIteration
 begin
-	exec SingleValue.usp_Get_Number @MinValue = @MinValue, @MaxValue = @MaxValue, @Number = @Number out
+	exec Fountain.[usp_Get_PostArea] @PostArea = @PostArea out, @PostAreaName = @PostAreaName out
 	;
 
 	insert #test
-	values(@Number)
+	values(@PostArea, @PostAreaName)
 	;
 
 	Select @Iteration = @Iteration + 1
@@ -40,10 +44,12 @@ begin
 	Select	@MaxIteration Expected,
 			@ValuesGenerated Actual
 
-	Select	Number,
+	Select	PostArea,
+			PostAreaName,
 			count(*)
 	from	#test
-	group by Number
+	group by PostArea,
+			PostAreaName
 	order by 1
 	;
 end

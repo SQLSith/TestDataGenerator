@@ -1,6 +1,8 @@
 ﻿
-CREATE   Proc [Test].[usp_Get_Number] (@MinValue int = 1, @MaxValue int = 9, @MaxIteration int = 100, @ResultOnly bit = 0, @Result tinyint = 0 out)
+
+Create   Proc [Test].[usp_Get_Forename] (@MaxIteration int = 100, @ResultOnly bit = 0, @Result tinyint = 0 out)
 as
+
 
 Set nocount on
 ;
@@ -10,23 +12,23 @@ Drop table if exists #test
 
 Create Table #test
 (
-Number int
+Forename varchar(50)
 )
 ;
 
 
-Declare @Number int,
+Declare @Forename varchar(50),
 		@Iteration int = 1,
 		@ValuesGenerated int = 0
 		
 
 while @Iteration <= @MaxIteration
 begin
-	exec SingleValue.usp_Get_Number @MinValue = @MinValue, @MaxValue = @MaxValue, @Number = @Number out
+	exec [SingleValue].[usp_Get_Forename] @Forename = @Forename out
 	;
 
 	insert #test
-	values(@Number)
+	values(@Forename)
 	;
 
 	Select @Iteration = @Iteration + 1
@@ -40,10 +42,10 @@ begin
 	Select	@MaxIteration Expected,
 			@ValuesGenerated Actual
 
-	Select	Number,
+	Select	Forename,
 			count(*)
 	from	#test
-	group by Number
+	group by Forename
 	order by 1
 	;
 end

@@ -1,5 +1,6 @@
 ﻿
-CREATE   Proc [Test].[usp_Get_Decimal_Bulk] (@MinValue decimal(18,10) = 0.01, @MaxValue decimal(18,10) = 99.99, @decimalPlaces tinyint = 2, @QuantityRequired smallint = 100, @ResultOnly bit = 0, @Result tinyint = 0 out)
+
+CREATE   Proc [Test].[usp_Get_Letter_Bulk] (@MinValue int = 1, @MaxValue int = 9, @QuantityRequired int = 100, @ResultOnly bit = 0, @Result tinyint = 0 out)
 as
 Set nocount on
 ;
@@ -10,16 +11,17 @@ Drop table if exists #test
 
 Create Table #test
 (
-Number decimal(18,10)
+Letter char(1)
 )
 ;
 
 
-Declare @Iteration int = 1,
+Declare @Letter char(1),
+		@Iteration int = 1,
 		@ValuesGenerated int = 0
 		
 insert #test
-exec BulkValue.usp_Get_Decimal @MinValue, @MaxValue, @decimalPlaces, @QuantityRequired
+exec	[BulkValue].[usp_Get_Letter] @QuantityRequired
 ;
 
 
@@ -31,10 +33,10 @@ begin
 	Select	@QuantityRequired Expected,
 			@ValuesGenerated Actual
 
-	Select	Number,
+	Select	Letter,
 			count(*)
 	from	#test
-	group by Number
+	group by Letter
 	order by 1
 	;
 end

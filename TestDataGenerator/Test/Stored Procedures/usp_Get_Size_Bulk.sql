@@ -1,5 +1,6 @@
 ﻿
-CREATE   Proc [Test].[usp_Get_Decimal_Bulk] (@MinValue decimal(18,10) = 0.01, @MaxValue decimal(18,10) = 99.99, @decimalPlaces tinyint = 2, @QuantityRequired smallint = 100, @ResultOnly bit = 0, @Result tinyint = 0 out)
+
+Create   Proc [Test].[usp_Get_Size_Bulk] (@QuantityRequired int = 100, @ResultOnly bit = 0, @Result tinyint = 0 out)
 as
 Set nocount on
 ;
@@ -10,18 +11,18 @@ Drop table if exists #test
 
 Create Table #test
 (
-Number decimal(18,10)
+Size varchar(50)
 )
 ;
 
 
-Declare @Iteration int = 1,
+Declare @Size varchar(50),
+		@Iteration int = 1,
 		@ValuesGenerated int = 0
-		
-insert #test
-exec BulkValue.usp_Get_Decimal @MinValue, @MaxValue, @decimalPlaces, @QuantityRequired
-;
 
+insert #test
+exec	[BulkValue].[usp_Get_Size] @QuantityRequired
+;
 
 Select	@ValuesGenerated = count(*)
 from	#test
@@ -31,10 +32,10 @@ begin
 	Select	@QuantityRequired Expected,
 			@ValuesGenerated Actual
 
-	Select	Number,
+	Select	Size,
 			count(*)
 	from	#test
-	group by Number
+	group by Size
 	order by 1
 	;
 end

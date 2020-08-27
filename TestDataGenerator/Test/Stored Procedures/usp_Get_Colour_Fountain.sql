@@ -1,5 +1,6 @@
 ﻿
-CREATE   Proc [Test].[usp_Get_Number] (@MinValue int = 1, @MaxValue int = 9, @MaxIteration int = 100, @ResultOnly bit = 0, @Result tinyint = 0 out)
+
+CREATE   Proc [Test].[usp_Get_Colour_Fountain] (@MaxIteration int = 100, @ResultOnly bit = 0, @Result tinyint = 0 out)
 as
 
 Set nocount on
@@ -10,23 +11,23 @@ Drop table if exists #test
 
 Create Table #test
 (
-Number int
+Colour varchar(50)
 )
 ;
 
 
-Declare @Number int,
+Declare @Colour varchar(50),
 		@Iteration int = 1,
 		@ValuesGenerated int = 0
 		
 
 while @Iteration <= @MaxIteration
 begin
-	exec SingleValue.usp_Get_Number @MinValue = @MinValue, @MaxValue = @MaxValue, @Number = @Number out
+	exec Fountain.[usp_Get_Colour] @Colour = @Colour out
 	;
 
 	insert #test
-	values(@Number)
+	values(@Colour)
 	;
 
 	Select @Iteration = @Iteration + 1
@@ -40,10 +41,10 @@ begin
 	Select	@MaxIteration Expected,
 			@ValuesGenerated Actual
 
-	Select	Number,
+	Select	Colour,
 			count(*)
 	from	#test
-	group by Number
+	group by Colour
 	order by 1
 	;
 end

@@ -1,5 +1,5 @@
 ﻿
-CREATE   Proc [Test].[usp_Get_Decimal_Bulk] (@MinValue decimal(18,10) = 0.01, @MaxValue decimal(18,10) = 99.99, @decimalPlaces tinyint = 2, @QuantityRequired smallint = 100, @ResultOnly bit = 0, @Result tinyint = 0 out)
+CREATE   Proc [Test].[usp_Get_Forename_BulkFountain] (@QuantityRequired int = 100, @ResultOnly bit = 0, @Result tinyint = 0 out)
 as
 Set nocount on
 ;
@@ -10,18 +10,18 @@ Drop table if exists #test
 
 Create Table #test
 (
-Number decimal(18,10)
+Forename varchar(50)
 )
 ;
 
 
-Declare @Iteration int = 1,
+Declare @Forename varchar(50),
+		@Iteration int = 1,
 		@ValuesGenerated int = 0
-		
-insert #test
-exec BulkValue.usp_Get_Decimal @MinValue, @MaxValue, @decimalPlaces, @QuantityRequired
-;
 
+insert #test
+exec	BulkFountain.[usp_Get_Forename] @QuantityRequired
+;
 
 Select	@ValuesGenerated = count(*)
 from	#test
@@ -31,10 +31,10 @@ begin
 	Select	@QuantityRequired Expected,
 			@ValuesGenerated Actual
 
-	Select	Number,
+	Select	Forename,
 			count(*)
 	from	#test
-	group by Number
+	group by Forename
 	order by 1
 	;
 end

@@ -1,5 +1,7 @@
 ﻿
-CREATE   Proc [Test].[usp_Get_Decimal_Bulk] (@MinValue decimal(18,10) = 0.01, @MaxValue decimal(18,10) = 99.99, @decimalPlaces tinyint = 2, @QuantityRequired smallint = 100, @ResultOnly bit = 0, @Result tinyint = 0 out)
+
+
+Create   Proc [Test].[usp_Get_PostArea_Bulk] (@QuantityRequired int = 100, @ResultOnly bit = 0, @Result tinyint = 0 out)
 as
 Set nocount on
 ;
@@ -10,18 +12,20 @@ Drop table if exists #test
 
 Create Table #test
 (
-Number decimal(18,10)
+PostArea varchar(50),
+PostAreaName varchar(50)
 )
 ;
 
 
-Declare @Iteration int = 1,
+Declare @PostArea varchar(50),
+		@PostAreaName varchar(50),
+		@Iteration int = 1,
 		@ValuesGenerated int = 0
-		
-insert #test
-exec BulkValue.usp_Get_Decimal @MinValue, @MaxValue, @decimalPlaces, @QuantityRequired
-;
 
+insert #test
+exec	[BulkValue].[usp_Get_PostArea] @QuantityRequired
+;
 
 Select	@ValuesGenerated = count(*)
 from	#test
@@ -31,10 +35,12 @@ begin
 	Select	@QuantityRequired Expected,
 			@ValuesGenerated Actual
 
-	Select	Number,
+	Select	PostArea,
+			PostAreaName,
 			count(*)
 	from	#test
-	group by Number
+	group by PostArea,
+			PostAreaName
 	order by 1
 	;
 end
