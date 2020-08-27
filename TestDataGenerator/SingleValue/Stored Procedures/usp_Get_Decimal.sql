@@ -1,5 +1,5 @@
 ﻿
-CREATE     proc [SingleValue].[usp_Get_Decimal](@MinValue decimal(9,2) = 0.01, @MaxValue decimal(9,2) = 99.99, @decimalPlaces tinyint = 2, @Number decimal(9,2) out)
+CREATE     proc [SingleValue].[usp_Get_Decimal](@MinValue decimal(18,10) = 0.01, @MaxValue decimal(18,10) = 99.99, @decimalPlaces tinyint = 2, @Number decimal(18,10) out)
 as
 begin
 /*

@@ -1,6 +1,6 @@
 ﻿
 
-Create Proc Reference.[usp_Populate_PostArea]
+CREATE Proc [Reference].[usp_Populate_PostArea]
 as
 	Set nocount on 
 	;
@@ -100,7 +100,7 @@ as
 	insert	Reference.PostArea (PostArea,  PostAreaName) values ('SG','Stevenage')
 	insert	Reference.PostArea (PostArea,  PostAreaName) values ('SK','Stockport')
 	insert	Reference.PostArea (PostArea,  PostAreaName) values ('SL','Slough')
-	insert	Reference.PostArea (PostArea,  PostAreaName) values ('SM','Sutton[1]')
+	insert	Reference.PostArea (PostArea,  PostAreaName) values ('SM','Sutton')
 	insert	Reference.PostArea (PostArea,  PostAreaName) values ('SN','Swindon')
 	insert	Reference.PostArea (PostArea,  PostAreaName) values ('SO','Southampton')
 	insert	Reference.PostArea (PostArea,  PostAreaName) values ('SP','Salisbury')
@@ -117,7 +117,7 @@ as
 	insert	Reference.PostArea (PostArea,  PostAreaName) values ('TR','Truro')
 	insert	Reference.PostArea (PostArea,  PostAreaName) values ('TS','Teesside')
 	insert	Reference.PostArea (PostArea,  PostAreaName) values ('TW','Twickenham')
-	insert	Reference.PostArea (PostArea,  PostAreaName) values ('UB','Southall[1]')
+	insert	Reference.PostArea (PostArea,  PostAreaName) values ('UB','Southall')
 	insert	Reference.PostArea (PostArea,  PostAreaName) values ('W','West London')
 	insert	Reference.PostArea (PostArea,  PostAreaName) values ('WA','Warrington')
 	insert	Reference.PostArea (PostArea,  PostAreaName) values ('WC','West Central London')
