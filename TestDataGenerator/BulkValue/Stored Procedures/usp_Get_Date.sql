@@ -12,7 +12,8 @@ exec BulkValue.usp_Get_Date @MinDate, @MaxDate, @QuantityRequired
 */
 
 	
-Declare @RangeDays bigint = datediff(day, @MinDate, @MaxDate)
+Declare @RangeDays bigint
+Select	@RangeDays = datediff(day, @MinDate, @MaxDate)
 
 Select	dateadd(day, round(@RangeDays * rand(checksum(NewID())),0), @MinDate)
 from	[Reference].[Number]

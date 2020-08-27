@@ -17,7 +17,10 @@ exec	[BulkValue].[usp_Get_Product] 100
 	where	[ReferenceTableName] = 'Product'
 	;
 
-	Drop table if exists #Selection
+	if object_id('tempdb..#Selection') is not null
+	begin
+		Drop Table #Selection
+	end
 	;
 
 	Select	ceiling(rand(checksum(NewID())) * @MaxSK) [ProductSK]
@@ -32,7 +35,7 @@ exec	[BulkValue].[usp_Get_Product] 100
 	order by NewID()
 	;
 
-	Drop table if exists #Selection
+	Drop Table #Selection
 	;
 
 end

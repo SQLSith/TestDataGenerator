@@ -7,9 +7,11 @@ as
 Set nocount on
 ;
 
-Drop table if exists #test
+if object_id('tempdb..#test') is not null
+begin
+	Drop Table #test
+end
 ;
-
 Create Table #test
 (
 Forename varchar(50)
@@ -52,4 +54,4 @@ end
 
 Select @Result = case when @MaxIteration = @ValuesGenerated then 1 else 0 end
 
-Drop table if exists #test
+Drop Table #test

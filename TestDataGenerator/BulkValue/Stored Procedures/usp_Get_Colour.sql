@@ -16,8 +16,12 @@ exec	[BulkValue].[usp_Get_Colour] 100
 	where	[ReferenceTableName] = 'Colour'
 	;
 
-	Drop table if exists #Selection
+	if object_id('tempdb..#Selection') is not null
+	begin
+		Drop Table #Selection
+	end
 	;
+
 
 	Select	ceiling(rand(checksum(NewID())) * @MaxSK) [ColourSK]
 	into	#Selection
@@ -31,7 +35,7 @@ exec	[BulkValue].[usp_Get_Colour] 100
 	order by NewID()
 	;
 
-	Drop table if exists #Selection
+	Drop table #Selection
 	;
 
 end
