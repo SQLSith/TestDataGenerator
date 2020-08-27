@@ -17,8 +17,12 @@ exec	[BulkValue].[usp_Get_Street] 100
 	where	[ReferenceTableName] = 'Street'
 	;
 
-	Drop table if exists #Selection
+	if object_id('tempdb..#Selection') is not null
+	begin
+		Drop Table #Selection
+	end
 	;
+
 
 	Select	ceiling(rand(checksum(NewID())) * @MaxSK) [StreetSK]
 	into	#Selection
@@ -31,6 +35,6 @@ exec	[BulkValue].[usp_Get_Street] 100
 	join	[Reference].Street s	on	n.[StreetSK] = s.[StreetSK]
 	order by NewID()
 	
-	Drop table if exists #Selection
+	Drop Table #Selection
 	;
 end

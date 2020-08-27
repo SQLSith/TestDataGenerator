@@ -17,7 +17,10 @@ exec	[BulkValue].[usp_Get_Surname] 100
 	where	[ReferenceTableName] = 'Surname'
 	;
 
-	Drop table if exists #Selection
+	if object_id('tempdb..#Selection') is not null
+	begin
+		Drop Table #Selection
+	end
 	;
 
 	Select	ceiling(rand(checksum(NewID())) * @MaxSK) [SurnameSK]
@@ -31,7 +34,7 @@ exec	[BulkValue].[usp_Get_Surname] 100
 	join	[Reference].Surname s	on	n.[SurnameSK] = s.[SurnameSK]
 	order by NewID()
 	
-	Drop table if exists #Selection
+	Drop Table #Selection
 	;
 
 
