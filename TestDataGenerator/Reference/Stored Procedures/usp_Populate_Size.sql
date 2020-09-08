@@ -15,11 +15,11 @@ as
 	begin
 		insert	SystemControl.ReferenceControl ([ReferenceTableName], [MaxReferenceSK], [LastAllocatedReferenceSK])
 		Select	'Size', max(SizeSK), 1
-		from Size
+		from Reference.Size
 	end
 	else 
 	begin
 		Update	SystemControl.ReferenceControl
-		set		[MaxReferenceSK] = (Select max(SizeSK) from Size)
+		set		[MaxReferenceSK] = (Select max(SizeSK) from Reference.Size)
 		where	ReferenceTableName = 'Size'
 	end

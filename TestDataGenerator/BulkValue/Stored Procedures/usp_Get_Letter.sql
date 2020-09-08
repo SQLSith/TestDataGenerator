@@ -3,7 +3,7 @@ Create    proc BulkValue.[usp_Get_Letter] (@QuantityRequired smallint)
 as
 begin
 /*
-exec BulkValue.[usp_Get_Letter_Bulk] 1000
+exec BulkValue.[usp_Get_Letter] 1000
 */
 	
 	Select	char((rand(checksum(NewID())) * 26) + 65) Letter 

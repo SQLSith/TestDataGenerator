@@ -2,7 +2,7 @@
 as
 begin
 /*
-exec BulkValue.usp_Get_Number_Bulk 95, 100, 1000
+exec [BulkValue].[usp_Get_Number] 95, 100, 1000
 
 */
 

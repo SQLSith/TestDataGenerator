@@ -1,7 +1,7 @@
 ﻿
 
 
-CREATE   Proc Reference.[usp_Populate_Surname]
+CREATE   Proc [Reference].[usp_Populate_Surname]
 as
 	Set Nocount on
 	;
@@ -1221,11 +1221,11 @@ as
 	begin
 		insert	SystemControl.ReferenceControl ([ReferenceTableName], [MaxReferenceSK], [LastAllocatedReferenceSK])
 		Select	'Surname', max(SurnameSK), 1
-		from Surname
+		from Reference.Surname
 	end
 	else 
 	begin
 		Update	SystemControl.ReferenceControl
-		set		[MaxReferenceSK] = (Select max(SurnameSK) from Surname)
+		set		[MaxReferenceSK] = (Select max(SurnameSK) from Reference.Surname)
 		where	ReferenceTableName = 'Surname'
 	end

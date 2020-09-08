@@ -1,5 +1,5 @@
 ﻿
-CREATE proc Reference.[usp_Populate_Colour]
+CREATE proc [Reference].[usp_Populate_Colour]
 as
 	Truncate Table Reference.Colour
 	;
@@ -42,11 +42,11 @@ as
 	begin
 		insert	SystemControl.ReferenceControl ([ReferenceTableName], [MaxReferenceSK], [LastAllocatedReferenceSK])
 		Select	'Colour', max(ColourSK), 1
-		from Colour
+		from	Reference.Colour
 	end
 	else 
 	begin
 		Update	SystemControl.ReferenceControl
-		set		[MaxReferenceSK] = (Select max(ColourSK) from Colour)
+		set		[MaxReferenceSK] = (Select max(ColourSK) from Reference.Colour)
 		where	ReferenceTableName = 'Colour'
 	end

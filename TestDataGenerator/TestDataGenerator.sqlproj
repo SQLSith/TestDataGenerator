@@ -201,6 +201,13 @@
     <Build Include="Security\Composite.sql" />
     <Build Include="Security\BulkFountain.sql" />
     <Build Include="Reference\Stored Procedures\usp_Populate_Forename.sql" />
+    <Build Include="Reference\Stored Procedures\usp_Maintain_Surname.sql" />
+    <Build Include="Reference\Stored Procedures\usp_Maintain_Street.sql" />
+    <Build Include="Reference\Stored Procedures\usp_Maintain_Size.sql" />
+    <Build Include="Reference\Stored Procedures\usp_Maintain_Product.sql" />
+    <Build Include="Reference\Stored Procedures\usp_Maintain_PostArea.sql" />
+    <Build Include="Reference\Stored Procedures\usp_Maintain_Forename.sql" />
+    <Build Include="Reference\Stored Procedures\usp_Maintain_Colour.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ComparisonScripts\Compare Project to Local.scmp" />

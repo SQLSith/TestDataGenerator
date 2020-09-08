@@ -1,11 +1,11 @@
 ﻿
-CREATE      Proc BulkFountain.[usp_Get_Colour] (@QuantityRequired smallint)
+CREATE      Proc [BulkFountain].[usp_Get_Colour] (@QuantityRequired smallint)
 as
 	Set Xact_Abort on
 	Set Nocount on
 
 /*
-exec BulkFountain.[usp_Get_Colour_Bulk] 1000
+exec BulkFountain.[usp_Get_Colour] 1000
 */
 
 
