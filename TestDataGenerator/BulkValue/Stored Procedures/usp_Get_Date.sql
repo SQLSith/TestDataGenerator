@@ -1,5 +1,5 @@
 ﻿
-CREATE    Proc BulkValue.[usp_Get_Date] (@MinDate date, @MaxDate date, @QuantityRequired smallint)
+CREATE    Proc [BulkValue].[usp_Get_Date] (@MinDate date, @MaxDate date, @QuantityRequired smallint)
 as
 /*
 Declare @MinDate date, @MaxDate date, @QuantityRequired smallint
@@ -15,6 +15,6 @@ exec BulkValue.usp_Get_Date @MinDate, @MaxDate, @QuantityRequired
 Declare @RangeDays bigint
 Select	@RangeDays = datediff(day, @MinDate, @MaxDate)
 
-Select	dateadd(day, round(@RangeDays * rand(checksum(NewID())),0), @MinDate)
+Select	dateadd(day, round(@RangeDays * rand(checksum(NewID())),0), @MinDate) DateValue
 from	[Reference].[Number]
 where	Number <= @QuantityRequired

@@ -1,8 +1,8 @@
 ﻿
-CREATE      Proc BulkFountain.[usp_Get_Size] (@QuantityRequired smallint)
+CREATE      Proc [BulkFountain].[usp_Get_Size] (@QuantityRequired smallint)
 as
 /*
-exec BulkFountain.[usp_Get_Size_Bulk] 1000
+exec BulkFountain.[usp_Get_Size] 1000
 */
 
 	Declare	@NextSK int,

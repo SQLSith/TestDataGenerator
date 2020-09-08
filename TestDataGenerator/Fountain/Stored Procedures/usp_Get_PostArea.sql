@@ -25,4 +25,7 @@ as
 		;
 	Commit Tran
 
-	Select @PostArea = PostArea from Reference.PostArea where PostAreaSK = @NextSK
+	Select	@PostArea = PostArea,
+			@PostAreaName = PostAreaName
+	from	Reference.PostArea 
+	where PostAreaSK = @NextSK

@@ -1,10 +1,9 @@
-﻿Create Proc Reference.[usp_Populate_Forename]
+﻿
+CREATE    Proc [Reference].[usp_Populate_Forename]
 as
 	Set Nocount on 
-	;
 
 	Truncate table Reference.Forename
-	;
 
 	insert Reference.Forename (Forename) values ('Kellie')
 	insert Reference.Forename (Forename) values ('Holly')
@@ -1029,11 +1028,11 @@ as
 	begin
 		insert	SystemControl.ReferenceControl ([ReferenceTableName], [MaxReferenceSK], [LastAllocatedReferenceSK])
 		Select	'Forename', max(ForenameSK), 1
-		from Forename
+		from Reference.Forename
 	end
 	else 
 	begin
 		Update	SystemControl.ReferenceControl
-		set		[MaxReferenceSK] = (Select max(ForenameSK) from Forename)
+		set		[MaxReferenceSK] = (Select max(ForenameSK) from Reference.Forename)
 		where	ReferenceTableName = 'Forename'
 	end
