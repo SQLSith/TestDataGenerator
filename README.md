@@ -22,18 +22,19 @@ The following data items are included in the current build:
 
 | Data Item | Description |
 | --- | --- |
-| Colour | Generates colour values based on the table `[Reference].[Colour]`. |
-| Date | Generates date values generated within a range specified through the `@MinDate` and `@MaxDate` parameters.|
-| Decimal | Generates decimal values generated within a range specified through the `@MinValue` and `@MaxValue` parameters, and with up to 10 decimal places as specified through the `@decimalPlaces` parameters.|
-| Forename | Generates forename values based on the table `[Reference].[Forename]`. |
-| Letter | Generates uppercase letters. |
-| Number | Generates integer values within a range specified through the `@MinValue` and `@MaxValue` parameters. |
-| Phone Number | Generates UK type phone numbers in a number of common formats. |
-| Post Area | Generates values for UK post area and post area names, and are intended for constructing postcode and address data. An example of this can be found in `[Composite].[usp_Get_Address]` |
-| Product | Generates product name values based on table `[Reference].[Product]` |
-| Size | Generates product size values based on the table `[Reference].[Size]` |
-| Street | Generates a street name value based on the table `[Reference].[Street]` |
-| Surname | Generates a surname value based on the table `[Reference].[Surname]` |
+| [Colour](https://github.com/SQLSith/TestDataGenerator/wiki/Colours) | Generates colour values based on the table `[Reference].[Colour]`. |
+| [Date](https://github.com/SQLSith/TestDataGenerator/wiki/Dates) | Generates date values generated within a range specified through the `@MinDate` and `@MaxDate` parameters.|
+| [Decimal](https://github.com/SQLSith/TestDataGenerator/wiki/Decimals) | Generates decimal values generated within a range specified through the `@MinValue` and `@MaxValue` parameters, and with up to 10 decimal places as specified through the `@decimalPlaces` parameters.|
+| [Forename](https://github.com/SQLSith/TestDataGenerator/wiki/Forenames) | Generates forename values based on the table `[Reference].[Forename]`. |
+| [Letter](https://github.com/SQLSith/TestDataGenerator/wiki/Letters) | Generates uppercase letters. |
+| [Number](https://github.com/SQLSith/TestDataGenerator/wiki/Numbers) | Generates integer values within a range specified through the `@MinValue` and `@MaxValue` parameters. |
+| [Phone Number](https://github.com/SQLSith/TestDataGenerator/wiki/Phone-Numbers) | Generates UK type phone numbers in a number of common formats. |
+| [Post Area](https://github.com/SQLSith/TestDataGenerator/wiki/Post-Areas) | Generates values for UK post area and post area names, and are intended for constructing postcode and address data. An example of this can be found in `[Composite].[usp_Get_Address]` |
+| [Product](https://github.com/SQLSith/TestDataGenerator/wiki/Products) | Generates product name values based on table `[Reference].[Product]` |
+| [Size](https://github.com/SQLSith/TestDataGenerator/wiki/Size-Codes) | Generates product size values based on the table `[Reference].[Size]` |
+| [Street](https://github.com/SQLSith/TestDataGenerator/wiki/Street-Names) | Generates a street name value based on the table `[Reference].[Street]` |
+| [Surname](https://github.com/SQLSith/TestDataGenerator/wiki/Surnames) | Generates a surname value based on the table `[Reference].[Surname]` |
+
 
 <br><br>
 ## Reference Data Maintenance
