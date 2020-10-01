@@ -25,6 +25,6 @@ exec BulkFountain.[usp_Get_Surname] 1000
 
 	Select	f.Surname
 	from	Reference.Number n
-	join	Reference.[Surname] f	on	f.SurnameSK = case ((number + (@NextSK - 1)) % @MaxSK) when 0 then @MaxSK else ((number + (@NextSK - 1)) % @MaxSK) end
+	join	Reference.[Surname] f	on	f.SurnameSK = case ((n.Number + (@NextSK - 1)) % @MaxSK) when 0 then @MaxSK else ((n.Number + (@NextSK - 1)) % @MaxSK) end
 	where	n.Number <= @QuantityRequired
 	order by n.Number

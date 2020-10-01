@@ -25,6 +25,6 @@ exec BulkFountain.[usp_Get_PostArea] 1000
 
 	Select	f.PostArea, f.[PostAreaName]
 	from	Reference.Number n
-	join	Reference.[PostArea] f	on	f.PostAreaSK = case ((number + (@NextSK - 1)) % @MaxSK) when 0 then @MaxSK else ((number + (@NextSK - 1)) % @MaxSK) end
+	join	Reference.[PostArea] f	on	f.PostAreaSK = case ((n.Number + (@NextSK - 1)) % @MaxSK) when 0 then @MaxSK else ((n.Number + (@NextSK - 1)) % @MaxSK) end
 	where	n.Number <= @QuantityRequired
 	order by n.Number

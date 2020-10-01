@@ -25,6 +25,6 @@ exec BulkFountain.[usp_Get_Forename] 1000
 
 	Select	f.Forename
 	from	Reference.Number n
-	join	Reference.[Forename] f	on	f.ForenameSK = case ((number + (@NextSK - 1)) % @MaxSK) when 0 then @MaxSK else ((number + (@NextSK - 1)) % @MaxSK) end
+	join	Reference.[Forename] f	on	f.ForenameSK = case ((n.Number + (@NextSK - 1)) % @MaxSK) when 0 then @MaxSK else ((n.Number + (@NextSK - 1)) % @MaxSK) end
 	where	n.Number <= @QuantityRequired
 	order by n.Number

@@ -19,6 +19,6 @@ exec BulkFountain.[usp_Get_Size] 1000
 
 	Select	f.Size
 	from	Reference.Number n
-	join	Reference.[Size] f	on	f.SizeSK = case ((number + (@NextSK - 1)) % @MaxSK) when 0 then @MaxSK else ((number + (@NextSK - 1)) % @MaxSK) end
+	join	Reference.[Size] f	on	f.SizeSK = case ((n.Number + (@NextSK - 1)) % @MaxSK) when 0 then @MaxSK else ((n.Number + (@NextSK - 1)) % @MaxSK) end
 	where	n.Number <= @QuantityRequired
 	order by n.Number

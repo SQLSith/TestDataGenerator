@@ -25,6 +25,6 @@ exec BulkFountain.[usp_Get_Colour] 1000
 
 	Select	f.Colour
 	from	Reference.Number n
-	join	Reference.[Colour] f	on	f.ColourSK = case ((number + (@NextSK - 1)) % @MaxSK) when 0 then @MaxSK else ((number + (@NextSK - 1)) % @MaxSK) end
+	join	Reference.[Colour] f	on	f.ColourSK = case ((n.Number + (@NextSK - 1)) % @MaxSK) when 0 then @MaxSK else ((n.Number + (@NextSK - 1)) % @MaxSK) end
 	where	n.Number <= @QuantityRequired
 	order by n.Number

@@ -18,14 +18,25 @@ BEGIN
 			@Number9 char(1),
 			@PhoneNumber varchar(15)
 
+	Declare @PrefixValues table (Number tinyint, Prefix varchar(2)) 
+	insert @PrefixValues (Number, Prefix) values  (1, '44')
+	insert @PrefixValues (Number, Prefix) values  (2, '0')
+	;
+
+	Declare @TypeNumberValues  table (Number tinyint, TypeNumber char(1)) 
+	insert @TypeNumberValues (Number, TypeNumber) Values (1, '1')
+	insert @TypeNumberValues (Number, TypeNumber) Values (2, '7')
+	;
+
+
 	Select top 1 @Prefix = Prefix
 	from	[SingleValue].[vw_RandomNumber] r
-	join	(values (1, '44'),(2, '0')) Prefix(Number, Prefix) 	on	ceiling(r.RandomNumber * 2.0) = prefix.Number
+	join	@PrefixValues p 	on	ceiling(r.RandomNumber * 2.0) = p.Number
 	;
 
 	Select top 1 @TypeNumber = TypeNumber
 	from	[SingleValue].[vw_RandomNumber] r
-	join	(values (1, '1'),(2, '7')) TypeNumber(Number, TypeNumber) on	ceiling(r.RandomNumber * 2.0) = TypeNumber.Number
+	join	@TypeNumberValues t on	ceiling(r.RandomNumber * 2.0) = t.Number
 	;
 
 
